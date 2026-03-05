@@ -12,7 +12,6 @@ msgs=(
 
 title="GetPwned."
 
-# Wybiera dostępne narzędzie do pokazywania okien dialogowych
 detect_dialog_tool() {
   if command -v zenity >/dev/null 2>&1; then
     echo "zenity"
@@ -21,7 +20,6 @@ detect_dialog_tool() {
   elif command -v osascript >/dev/null 2>&1; then
     echo "osascript"
   elif command -v notify-send >/dev/null 2>&1; then
-    # notify-send nie blokuje; użyjemy go jako fallback
     echo "notify-send"
   else
     echo "none"
@@ -53,7 +51,6 @@ show_message() {
   esac
 }
 
-# Główna pętla
 for ((i=1;i<=cycles;i++)); do
   for msg in "${msgs[@]}"; do
     show_message "$msg"
